@@ -16,53 +16,51 @@ class _MobileOverlay extends StatelessWidget {
     return Stack(
       alignment: Alignment.center,
       children: [
-        SafeArea(
-          child: Row(
-            children: [
-              Expanded(
-                child: _VideoGestureDetector(
-                  tag: tag,
-                  onDoubleTap: _isRtl()
-                      ? _podCtr.onRightDoubleTap
-                      : _podCtr.onLeftDoubleTap,
-                  child: ColoredBox(
-                    color: overlayColor,
-                    child: _LeftRightDoubleTapBox(
-                      tag: tag,
-                      isLeft: !_isRtl(),
-                    ),
-                  ),
-                ),
-              ),
-              _VideoGestureDetector(
+        Row(
+          children: [
+            Expanded(
+              child: _VideoGestureDetector(
                 tag: tag,
+                onDoubleTap: _isRtl()
+                    ? _podCtr.onRightDoubleTap
+                    : _podCtr.onLeftDoubleTap,
                 child: ColoredBox(
                   color: overlayColor,
-                  child: SizedBox(
-                    height: double.infinity,
-                    child: Center(
-                      child: _AnimatedPlayPauseIcon(tag: tag, size: 42),
-                    ),
+                  child: _LeftRightDoubleTapBox(
+                    tag: tag,
+                    isLeft: !_isRtl(),
                   ),
                 ),
               ),
-              Expanded(
-                child: _VideoGestureDetector(
-                  tag: tag,
-                  onDoubleTap: _isRtl()
-                      ? _podCtr.onLeftDoubleTap
-                      : _podCtr.onRightDoubleTap,
-                  child: ColoredBox(
-                    color: overlayColor,
-                    child: _LeftRightDoubleTapBox(
-                      tag: tag,
-                      isLeft: _isRtl(),
-                    ),
+            ),
+            _VideoGestureDetector(
+              tag: tag,
+              child: ColoredBox(
+                color: overlayColor,
+                child: SizedBox(
+                  height: double.infinity,
+                  child: Center(
+                    child: _AnimatedPlayPauseIcon(tag: tag, size: 42),
                   ),
                 ),
               ),
-            ],
-          ),
+            ),
+            Expanded(
+              child: _VideoGestureDetector(
+                tag: tag,
+                onDoubleTap: _isRtl()
+                    ? _podCtr.onLeftDoubleTap
+                    : _podCtr.onRightDoubleTap,
+                child: ColoredBox(
+                  color: overlayColor,
+                  child: _LeftRightDoubleTapBox(
+                    tag: tag,
+                    isLeft: _isRtl(),
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
         Align(
           alignment: Alignment.topCenter,
